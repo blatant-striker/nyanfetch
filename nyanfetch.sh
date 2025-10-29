@@ -3,6 +3,26 @@
 # Nyan Cat Neofetch - Animated ASCII art with system info
 # Based on the original Nyancat.sh
 
+# Parse command line arguments
+PLAY_AUDIO=false
+for arg in "$@"; do
+    case $arg in
+        --unmute|-u)
+            PLAY_AUDIO=true
+            shift
+            ;;
+        --help|-h)
+            echo "Usage: nyanfetch [OPTIONS]"
+            echo "Animated Nyan Cat ASCII art with system information"
+            echo ""
+            echo "Options:"
+            echo "  --unmute, -u    Play Nyan Cat music"
+            echo "  --help, -h      Show this help message"
+            exit 0
+            ;;
+    esac
+done
+
 # Get the script directory (resolve symlink)
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do
@@ -19,6 +39,33 @@ elif [ -d "/usr/local/share/nyanfetch" ]; then
     DATA_DIR="/usr/local/share/nyanfetch"
 else
     DATA_DIR="$SCRIPT_DIR"
+fi
+
+# Start audio playback if requested
+if [ "$PLAY_AUDIO" = true ]; then
+    AUDIO_FILE="${DATA_DIR}/nyancat.wav"
+    if [ -f "$AUDIO_FILE" ]; then
+        # Try different audio players in order of preference
+        if command -v paplay &> /dev/null; then
+            paplay --volume=65536 "$AUDIO_FILE" &> /dev/null &
+        elif command -v aplay &> /dev/null; then
+            aplay -q "$AUDIO_FILE" &> /dev/null &
+        elif command -v ffplay &> /dev/null; then
+            ffplay -nodisp -autoexit -loglevel quiet "$AUDIO_FILE" &> /dev/null &
+        elif command -v mpg123 &> /dev/null; then
+            mpg123 -q "$AUDIO_FILE" &> /dev/null &
+        else
+            echo "Warning: No audio player found. Install pulseaudio-utils, alsa-utils, or ffmpeg." >&2
+        fi
+        AUDIO_PID=$!
+        # Kill audio on exit
+        trap "kill $AUDIO_PID 2>/dev/null; tput cnorm; clear; exit 0" INT TERM
+    else
+        echo "Warning: Audio file not found at $AUDIO_FILE" >&2
+    fi
+else
+    # Normal cleanup without audio
+    trap 'tput cnorm; clear; exit 0' INT TERM
 fi
 
 # Colors for system info
@@ -185,9 +232,6 @@ clear
 
 # Hide cursor
 tput civis
-
-# Trap Ctrl+C to cleanup properly
-trap 'tput cnorm; clear; exit 0' INT TERM
 
 img_num=1
 frame_count=0

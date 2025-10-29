@@ -60,9 +60,21 @@ sudo apt install nyanfetch
 
 ## Usage
 
-Simply run:
+**Basic usage:**
 ```bash
 nyanfetch
+```
+
+**With audio:**
+```bash
+nyanfetch --unmute
+# or
+nyanfetch -u
+```
+
+**Help:**
+```bash
+nyanfetch --help
 ```
 
 Press `Ctrl+C` to exit.
@@ -77,6 +89,7 @@ Press `Ctrl+C` to exit.
 **Optional (for full features):**
 - lspci (for GPU information)
 - x11-utils (for resolution detection)
+- pulseaudio-utils or alsa-utils (for audio playback with --unmute)
 
 ## Uninstallation
 

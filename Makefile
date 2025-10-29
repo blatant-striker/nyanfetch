@@ -16,6 +16,7 @@ install:
 	install -m 0644 nyancat-3.ans $(DESTDIR)$(DATADIR)/
 	install -m 0644 nyancat-4.ans $(DESTDIR)$(DATADIR)/
 	install -m 0644 nyancat-5.ans $(DESTDIR)$(DATADIR)/
+	install -m 0644 nyancat.wav $(DESTDIR)$(DATADIR)/
 
 uninstall:
 	rm -f $(DESTDIR)$(BINDIR)/nyanfetch

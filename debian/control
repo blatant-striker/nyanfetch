@@ -9,7 +9,7 @@ Homepage: https://github.com/yourusername/nyanfetch
 Package: nyanfetch
 Architecture: all
 Depends: bash (>= 4.0), coreutils, procps
-Recommends: lspci, x11-utils
+Recommends: lspci, x11-utils, pulseaudio-utils | alsa-utils
 Description: Animated Nyan Cat ASCII art with system information
  Nyanfetch displays an animated Nyan Cat ASCII art alongside
  detailed system information including OS, kernel, CPU, memory, and more.
@@ -17,6 +17,7 @@ Description: Animated Nyan Cat ASCII art with system information
  .
  Features:
   - Animated Nyan Cat ASCII art
+  - Optional audio playback (--unmute flag)
   - Real-time CPU and memory usage bars
   - System information display (OS, kernel, uptime, etc.)
   - Colorful terminal output
