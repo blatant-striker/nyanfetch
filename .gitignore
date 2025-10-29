@@ -1,0 +1,23 @@
+# Debian packaging artifacts
+debian/nyancat-neofetch/
+debian/.debhelper/
+debian/files
+debian/*.log
+debian/*.substvars
+debian/debhelper-build-stamp
+
+# Build artifacts
+*.deb
+*.dsc
+*.tar.gz
+*.tar.xz
+*.buildinfo
+*.changes
+.pc/
+
+# Editor files
+*~
+*.swp
+*.swo
+.vscode/
+.idea/

@@ -1,0 +1,22 @@
+Source: nyancat-neofetch
+Section: utils
+Priority: optional
+Maintainer: Your Name <your.email@example.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.0
+Homepage: https://github.com/yourusername/nyancat-neofetch
+
+Package: nyancat-neofetch
+Architecture: all
+Depends: bash (>= 4.0), coreutils, procps
+Recommends: lspci, x11-utils
+Description: Animated Nyan Cat ASCII art with system information
+ Nyancat-neofetch displays an animated Nyan Cat ASCII art alongside
+ detailed system information including OS, kernel, CPU, memory, and more.
+ It provides a colorful and entertaining way to view your system specs.
+ .
+ Features:
+  - Animated Nyan Cat ASCII art
+  - Real-time CPU and memory usage bars
+  - System information display (OS, kernel, uptime, etc.)
+  - Colorful terminal output

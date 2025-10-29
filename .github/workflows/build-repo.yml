@@ -1,0 +1,99 @@
+name: Update APT Repository
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  update-repo:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout main repo
+      uses: actions/checkout@v3
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y debhelper build-essential reprepro gnupg
+    
+    - name: Build package
+      run: |
+        dpkg-buildpackage -us -uc -b
+    
+    - name: Checkout gh-pages branch
+      uses: actions/checkout@v3
+      with:
+        ref: gh-pages
+        path: repo
+    
+    - name: Set up repository structure
+      run: |
+        cd repo
+        mkdir -p conf dists pool
+        
+        # Create reprepro config
+        cat > conf/distributions << 'EOF'
+        Origin: nyancat-neofetch
+        Label: nyancat-neofetch
+        Codename: stable
+        Architectures: amd64 all
+        Components: main
+        Description: Nyancat Neofetch Repository
+        EOF
+    
+    - name: Add package to repository
+      run: |
+        cd repo
+        # Remove signing requirement for now (add GPG later if needed)
+        reprepro includedeb stable ../*.deb || true
+    
+    - name: Create install instructions
+      run: |
+        cd repo
+        cat > README.md << 'EOF'
+        # Nyancat Neofetch APT Repository
+        
+        ## Installation
+        
+        Add this repository to your system:
+        
+        ```bash
+        echo "deb [trusted=yes] https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }} stable main" | \
+          sudo tee /etc/apt/sources.list.d/nyancat-neofetch.list
+        
+        sudo apt update
+        sudo apt install nyancat-neofetch
+        ```
+        
+        ## Direct Download
+        
+        Download the latest `.deb` package from [Releases](https://github.com/${{ github.repository }}/releases/latest).
+        
+        EOF
+    
+    - name: Commit and push
+      run: |
+        cd repo
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add -A
+        git commit -m "Update repository with latest package" || true
+        git push origin gh-pages
+    
+    - name: Deploy to GitHub Pages
+      uses: actions/configure-pages@v3
+    
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: repo
+    
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v2

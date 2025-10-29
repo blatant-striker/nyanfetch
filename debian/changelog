@@ -1,0 +1,8 @@
+nyancat-neofetch (1.0.0-1) unstable; urgency=low
+
+  * Initial release
+  * Animated Nyan Cat with system information
+  * Real-time CPU and memory usage monitoring
+  * Support for multiple package managers
+
+ -- Your Name <your.email@example.com>  Mon, 28 Oct 2024 21:00:00 -0600
