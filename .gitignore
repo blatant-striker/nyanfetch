@@ -1,5 +1,5 @@
 # Debian packaging artifacts
-debian/nyancat-neofetch/
+debian/nyanfetch/
 debian/.debhelper/
 debian/files
 debian/*.log

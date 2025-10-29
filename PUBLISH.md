@@ -19,11 +19,11 @@ Users download `.deb` file directly, but don't get automatic updates.
 
 1. **Create GitHub repository** (if not already done):
 ```bash
-cd /home/blatantstriker/CascadeProjects/nyancat-neofetch
+cd /home/blatantstriker/CascadeProjects/nyanfetch
 git init
 git add .
-git commit -m "Initial commit: nyancat-neofetch package"
-gh repo create nyancat-neofetch --public --source=. --push
+git commit -m "Initial commit: nyanfetch package"
+gh repo create nyanfetch --public --source=. --push
 ```
 
 2. **Create a release with the .deb file**:
@@ -33,15 +33,15 @@ git tag -a v1.0.0 -m "Release version 1.0.0"
 git push origin v1.0.0
 
 # Create GitHub release and upload .deb
-gh release create v1.0.0 ../nyancat-neofetch_1.0.0-1_all.deb \
-  --title "nyancat-neofetch v1.0.0" \
-  --notes "Initial release of nyancat-neofetch"
+gh release create v1.0.0 ../nyanfetch_1.0.0-1_all.deb \
+  --title "nyanfetch v1.0.0" \
+  --notes "Initial release of nyanfetch"
 ```
 
 3. **Users install with**:
 ```bash
-wget https://github.com/USERNAME/nyancat-neofetch/releases/download/v1.0.0/nyancat-neofetch_1.0.0-1_all.deb
-sudo dpkg -i nyancat-neofetch_1.0.0-1_all.deb
+wget https://github.com/USERNAME/nyanfetch/releases/download/v1.0.0/nyanfetch_1.0.0-1_all.deb
+sudo dpkg -i nyanfetch_1.0.0-1_all.deb
 ```
 
 ---
@@ -72,25 +72,25 @@ gpg --armor --export YOUR_EMAIL > public.key
 2. **Set up repository structure**:
 ```bash
 cd /home/blatantstriker/CascadeProjects
-mkdir nyancat-neofetch-repo
-cd nyancat-neofetch-repo
+mkdir nyanfetch-repo
+cd nyanfetch-repo
 
 # Create reprepro configuration
 mkdir -p conf
 cat > conf/distributions << 'EOF'
-Origin: nyancat-neofetch
-Label: nyancat-neofetch
+Origin: nyanfetch
+Label: nyanfetch
 Codename: stable
 Architectures: amd64 all
 Components: main
-Description: Nyancat Neofetch Repository
+Description: Nyanfetch Repository
 SignWith: YOUR_GPG_KEY_ID
 EOF
 ```
 
 3. **Add package to repository**:
 ```bash
-reprepro includedeb stable /path/to/nyancat-neofetch_1.0.0-1_all.deb
+reprepro includedeb stable /path/to/nyanfetch_1.0.0-1_all.deb
 ```
 
 4. **Set up GitHub Pages**:
@@ -101,7 +101,7 @@ git add .
 git commit -m "Initial APT repository"
 
 # Create GitHub repo and push
-gh repo create nyancat-neofetch-repo --public --source=. --push
+gh repo create nyanfetch-repo --public --source=. --push
 
 # Enable GitHub Pages (Settings > Pages > Deploy from branch: main)
 ```
@@ -109,15 +109,15 @@ gh repo create nyancat-neofetch-repo --public --source=. --push
 5. **Users add your repository**:
 ```bash
 # Add GPG key
-wget -qO - https://USERNAME.github.io/nyancat-neofetch-repo/public.key | sudo apt-key add -
+wget -qO - https://USERNAME.github.io/nyanfetch-repo/public.key | sudo apt-key add -
 
 # Add repository
-echo "deb https://USERNAME.github.io/nyancat-neofetch-repo stable main" | \
-  sudo tee /etc/apt/sources.list.d/nyancat-neofetch.list
+echo "deb https://USERNAME.github.io/nyanfetch-repo stable main" | \
+  sudo tee /etc/apt/sources.list.d/nyanfetch.list
 
 # Install
 sudo apt update
-sudo apt install nyancat-neofetch
+sudo apt install nyanfetch
 ```
 
 ---
@@ -136,7 +136,7 @@ Best for Ubuntu users - integrates with official Ubuntu infrastructure.
 1. **Create PPA on Launchpad**:
    - Go to https://launchpad.net/~YOUR_USERNAME
    - Click "Create a new PPA"
-   - Name it (e.g., "nyancat-neofetch")
+   - Name it (e.g., "nyanfetch")
 
 2. **Install required tools**:
 ```bash
@@ -148,27 +148,27 @@ sudo apt install dput devscripts
 [ppa]
 fqdn = ppa.launchpad.net
 method = ftp
-incoming = ~YOUR_USERNAME/ubuntu/nyancat-neofetch/
+incoming = ~YOUR_USERNAME/ubuntu/nyanfetch/
 login = anonymous
 allow_unsigned_uploads = 0
 ```
 
 4. **Build source package**:
 ```bash
-cd /home/blatantstriker/CascadeProjects/nyancat-neofetch
+cd /home/blatantstriker/CascadeProjects/nyanfetch
 debuild -S -sa
 ```
 
 5. **Upload to PPA**:
 ```bash
-dput ppa ../nyancat-neofetch_1.0.0-1_source.changes
+dput ppa ../nyanfetch_1.0.0-1_source.changes
 ```
 
 6. **Users install with**:
 ```bash
-sudo add-apt-repository ppa:YOUR_USERNAME/nyancat-neofetch
+sudo add-apt-repository ppa:YOUR_USERNAME/nyanfetch
 sudo apt update
-sudo apt install nyancat-neofetch
+sudo apt install nyanfetch
 ```
 
 ---
@@ -188,8 +188,8 @@ gem install package_cloud
 
 3. **Upload package**:
 ```bash
-package_cloud push USERNAME/nyancat-neofetch/ubuntu/focal \
-  /path/to/nyancat-neofetch_1.0.0-1_all.deb
+package_cloud push USERNAME/nyanfetch/ubuntu/focal \
+  /path/to/nyanfetch_1.0.0-1_all.deb
 ```
 
 4. **Users add repository** (instructions provided by PackageCloud)

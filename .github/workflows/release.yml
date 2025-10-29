@@ -44,7 +44,7 @@ jobs:
           ### Ubuntu/Debian
           Download the `.deb` file and install:
           ```bash
-          sudo dpkg -i nyancat-neofetch_*.deb
+          sudo dpkg -i nyanfetch_*.deb
           sudo apt-get install -f  # Fix any dependencies
           ```
           

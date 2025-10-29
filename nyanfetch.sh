@@ -13,10 +13,10 @@ done
 SCRIPT_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 # Check if running from installation or development
-if [ -d "/usr/share/nyancat-neofetch" ]; then
-    DATA_DIR="/usr/share/nyancat-neofetch"
-elif [ -d "/usr/local/share/nyancat-neofetch" ]; then
-    DATA_DIR="/usr/local/share/nyancat-neofetch"
+if [ -d "/usr/share/nyanfetch" ]; then
+    DATA_DIR="/usr/share/nyanfetch"
+elif [ -d "/usr/local/share/nyanfetch" ]; then
+    DATA_DIR="/usr/local/share/nyanfetch"
 else
     DATA_DIR="$SCRIPT_DIR"
 fi

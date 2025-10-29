@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "🚀 Nyancat Neofetch - GitHub Setup & Publishing"
+echo "🚀 Nyanfetch - GitHub Setup & Publishing"
 echo "================================================"
 echo
 
@@ -23,7 +23,7 @@ fi
 if ! git log > /dev/null 2>&1; then
     echo "📦 Creating initial commit..."
     git add -A
-    git commit -m "Initial commit: nyancat-neofetch v1.0.0 with automated packaging"
+    git commit -m "Initial commit: nyanfetch v1.0.0 with automated packaging"
     echo "✅ Initial commit created"
     echo
 fi
@@ -34,7 +34,7 @@ if ! command -v gh &> /dev/null; then
     echo "Install it with: sudo apt install gh"
     echo
     echo "Or manually create the repository on GitHub and run:"
-    echo "  git remote add origin https://github.com/YOUR_USERNAME/nyancat-neofetch.git"
+    echo "  git remote add origin https://github.com/YOUR_USERNAME/nyanfetch.git"
     echo "  git push -u origin main"
     echo "  git tag -a v1.0.0 -m 'Release version 1.0.0'"
     echo "  git push origin v1.0.0"
@@ -62,8 +62,8 @@ else
     echo "📤 Creating GitHub repository..."
     
     # Create repository
-    if gh repo create nyancat-neofetch --public --source=. --remote=origin; then
-        echo "✅ Repository created: https://github.com/$GH_USERNAME/nyancat-neofetch"
+    if gh repo create nyanfetch --public --source=. --remote=origin; then
+        echo "✅ Repository created: https://github.com/$GH_USERNAME/nyanfetch"
     else
         echo "⚠️  Repository might already exist"
         read -p "Enter repository URL (or press Enter to skip): " repo_url
@@ -91,7 +91,7 @@ echo
 echo "✅ Setup Complete!"
 echo
 echo "📋 Next Steps:"
-echo "1. Go to: https://github.com/$GH_USERNAME/nyancat-neofetch"
+echo "1. Go to: https://github.com/$GH_USERNAME/nyanfetch"
 echo "2. Click Settings → Pages"
 echo "3. Set source to 'GitHub Actions'"
 echo "4. Wait for the Actions workflow to complete"
@@ -99,13 +99,13 @@ echo
 echo "🎉 After Actions complete, users can install with:"
 echo
 echo "   Option A - Direct download:"
-echo "   wget https://github.com/$GH_USERNAME/nyancat-neofetch/releases/download/v1.0.0/nyancat-neofetch_1.0.0-1_all.deb"
-echo "   sudo dpkg -i nyancat-neofetch_1.0.0-1_all.deb"
+echo "   wget https://github.com/$GH_USERNAME/nyanfetch/releases/download/v1.0.0/nyanfetch_1.0.0-1_all.deb"
+echo "   sudo dpkg -i nyanfetch_1.0.0-1_all.deb"
 echo
 echo "   Option B - APT repository (after gh-pages is set up):"
-echo "   echo \"deb [trusted=yes] https://$GH_USERNAME.github.io/nyancat-neofetch stable main\" | sudo tee /etc/apt/sources.list.d/nyancat-neofetch.list"
-echo "   sudo apt update && sudo apt install nyancat-neofetch"
+echo "   echo \"deb [trusted=yes] https://$GH_USERNAME.github.io/nyanfetch stable main\" | sudo tee /etc/apt/sources.list.d/nyanfetch.list"
+echo "   sudo apt update && sudo apt install nyanfetch"
 echo
 echo "🔗 Monitor build progress:"
-echo "   https://github.com/$GH_USERNAME/nyancat-neofetch/actions"
+echo "   https://github.com/$GH_USERNAME/nyanfetch/actions"
 echo

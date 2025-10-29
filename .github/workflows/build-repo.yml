@@ -40,12 +40,12 @@ jobs:
         
         # Create reprepro config
         cat > conf/distributions << 'EOF'
-        Origin: nyancat-neofetch
-        Label: nyancat-neofetch
+        Origin: nyanfetch
+        Label: nyanfetch
         Codename: stable
         Architectures: amd64 all
         Components: main
-        Description: Nyancat Neofetch Repository
+        Description: Nyanfetch Repository
         EOF
     
     - name: Add package to repository
@@ -58,7 +58,7 @@ jobs:
       run: |
         cd repo
         cat > README.md << 'EOF'
-        # Nyancat Neofetch APT Repository
+        # Nyanfetch APT Repository
         
         ## Installation
         
@@ -66,10 +66,10 @@ jobs:
         
         ```bash
         echo "deb [trusted=yes] https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }} stable main" | \
-          sudo tee /etc/apt/sources.list.d/nyancat-neofetch.list
+          sudo tee /etc/apt/sources.list.d/nyanfetch.list
         
         sudo apt update
-        sudo apt install nyancat-neofetch
+        sudo apt install nyanfetch
         ```
         
         ## Direct Download

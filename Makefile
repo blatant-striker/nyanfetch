@@ -1,6 +1,6 @@
 PREFIX ?= /usr/local
 BINDIR = $(PREFIX)/bin
-DATADIR = $(PREFIX)/share/nyancat-neofetch
+DATADIR = $(PREFIX)/share/nyanfetch
 
 .PHONY: all install uninstall
 

@@ -1,4 +1,4 @@
-# Nyancat Neofetch
+# Nyanfetch
 
 An animated Nyan Cat ASCII art system information display tool for Linux terminals.
 
@@ -49,13 +49,13 @@ dpkg-buildpackage -us -uc -b
 
 3. Install the generated .deb package:
 ```bash
-sudo dpkg -i ../nyancat-neofetch_1.0.0-1_all.deb
+sudo dpkg -i ../nyanfetch_1.0.0-1_all.deb
 ```
 
 ### From APT Repository (After publishing)
 
 ```bash
-sudo apt install nyancat-neofetch
+sudo apt install nyanfetch
 ```
 
 ## Usage
@@ -82,7 +82,7 @@ Press `Ctrl+C` to exit.
 
 If installed via APT:
 ```bash
-sudo apt remove nyancat-neofetch
+sudo apt remove nyanfetch
 ```
 
 If installed manually:

@@ -21,7 +21,7 @@ This will create the `.deb` package file in the parent directory.
 ### 3. Install the Package
 
 ```bash
-sudo dpkg -i ../nyancat-neofetch_1.0.0-1_all.deb
+sudo dpkg -i ../nyanfetch_1.0.0-1_all.deb
 ```
 
 ### 4. Fix Missing Dependencies (if needed)
@@ -67,7 +67,7 @@ aptly repo create nyancat-repo
 
 3. Add your package:
 ```bash
-aptly repo add nyancat-repo ../nyancat-neofetch_1.0.0-1_all.deb
+aptly repo add nyancat-repo ../nyanfetch_1.0.0-1_all.deb
 ```
 
 4. Publish:
@@ -108,5 +108,5 @@ Standards-Version: 4.6.2
 ### Lintian Warnings
 Check package quality:
 ```bash
-lintian ../nyancat-neofetch_1.0.0-1_all.deb
+lintian ../nyanfetch_1.0.0-1_all.deb
 ```

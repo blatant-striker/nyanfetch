@@ -14,10 +14,10 @@ sudo apt install gh
 gh auth login
 
 # Create repository and push
-cd /home/blatantstriker/CascadeProjects/nyancat-neofetch
+cd /home/blatantstriker/CascadeProjects/nyanfetch
 git add .
-git commit -m "Initial release: nyancat-neofetch v1.0.0"
-gh repo create nyancat-neofetch --public --source=. --push
+git commit -m "Initial release: nyanfetch v1.0.0"
+gh repo create nyanfetch --public --source=. --push
 ```
 
 ### Step 2: Enable GitHub Pages
@@ -46,17 +46,17 @@ This will automatically:
 **Option A: Direct Installation**
 ```bash
 # Download from releases page
-wget https://github.com/YOUR_USERNAME/nyancat-neofetch/releases/download/v1.0.0/nyancat-neofetch_1.0.0-1_all.deb
-sudo dpkg -i nyancat-neofetch_1.0.0-1_all.deb
+wget https://github.com/YOUR_USERNAME/nyanfetch/releases/download/v1.0.0/nyanfetch_1.0.0-1_all.deb
+sudo dpkg -i nyanfetch_1.0.0-1_all.deb
 ```
 
 **Option B: APT Repository** (After gh-pages is set up)
 ```bash
-echo "deb [trusted=yes] https://YOUR_USERNAME.github.io/nyancat-neofetch stable main" | \
-  sudo tee /etc/apt/sources.list.d/nyancat-neofetch.list
+echo "deb [trusted=yes] https://YOUR_USERNAME.github.io/nyanfetch stable main" | \
+  sudo tee /etc/apt/sources.list.d/nyanfetch.list
 
 sudo apt update
-sudo apt install nyancat-neofetch
+sudo apt install nyanfetch
 ```
 
 ---
@@ -72,8 +72,8 @@ If you prefer manual control:
 dpkg-buildpackage -us -uc -b
 
 # Install GitHub CLI and create release
-gh release create v1.0.0 ../nyancat-neofetch_1.0.0-1_all.deb \
-  --title "nyancat-neofetch v1.0.0" \
+gh release create v1.0.0 ../nyanfetch_1.0.0-1_all.deb \
+  --title "nyanfetch v1.0.0" \
   --notes "Animated Nyan Cat system info display"
 ```
 

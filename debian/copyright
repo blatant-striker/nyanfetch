@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: nyancat-neofetch
-Source: https://github.com/yourusername/nyancat-neofetch
+Upstream-Name: nyanfetch
+Source: https://github.com/yourusername/nyanfetch
 
 Files: *
 Copyright: 2024 Your Name <your.email@example.com>
